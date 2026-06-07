@@ -3,6 +3,7 @@ package me.ngyu.domain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+import me.ngyu.exception.MoneyValidateException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -78,7 +79,7 @@ class MoneyTest {
     Money a = Money.of(10);
     Money b = Money.of(20);
 
-    Money result = a + b;
+    Money result = a.add(b);
 
     assertEquals(BigDecimal.valueOf(30), result.amount());
   }
@@ -89,7 +90,7 @@ class MoneyTest {
     Money a = Money.of(10);
     Money b = Money.of(20);
 
-    Money result = a - b;
+    Money result = a.minus(b);
 
     assertEquals(BigDecimal.valueOf(-10), result.amount());
   }
@@ -100,7 +101,7 @@ class MoneyTest {
     Money a = Money.of(10);
     Money b = Money.of(20);
 
-    Money result = a * b;
+    Money result = a.multiply(b);
 
     assertEquals(BigDecimal.valueOf(200), result.amount());
   }
@@ -111,7 +112,7 @@ class MoneyTest {
     Money a = Money.of(10);
     Money b = Money.of(20);
 
-    Money result = a / b;
+    Money result = a.divide(b);
 
     assertEquals(BigDecimal.valueOf(0.5), result.amount());
   }
