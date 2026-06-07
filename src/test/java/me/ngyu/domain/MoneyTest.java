@@ -65,4 +65,54 @@ class MoneyTest {
             () -> assertEquals("KRW", money.currency())
             );
   }
+
+  @Test
+  @DisplayName("amount 는 null이어서는 안된다")
+  void failCreateMoneyObjectReasonAmountIsNull() {
+    assertThrows(MoneyValidateException.class, () -> Money.of(null));
+  }
+
+  @Test
+  @DisplayName("연산자로 덧셈이 가능하다")
+  void plusOperation() {
+    Money a = Money.of(10);
+    Money b = Money.of(20);
+
+    Money result = a + b;
+
+    assertEquals(BigDecimal.valueOf(30), result.amount());
+  }
+
+  @Test
+  @DisplayName("연산자로 뺄셈이 가능하다")
+  void minusOperation() {
+    Money a = Money.of(10);
+    Money b = Money.of(20);
+
+    Money result = a - b;
+
+    assertEquals(BigDecimal.valueOf(-10), result.amount());
+  }
+
+  @Test
+  @DisplayName("연산자로 곱셈이 가능하다")
+  void minusOperation() {
+    Money a = Money.of(10);
+    Money b = Money.of(20);
+
+    Money result = a * b;
+
+    assertEquals(BigDecimal.valueOf(200), result.amount());
+  }
+
+  @Test
+  @DisplayName("연산자로 나눗셈이 가능하다")
+  void minusOperation() {
+    Money a = Money.of(10);
+    Money b = Money.of(20);
+
+    Money result = a / b;
+
+    assertEquals(BigDecimal.valueOf(0.5), result.amount());
+  }
 }
