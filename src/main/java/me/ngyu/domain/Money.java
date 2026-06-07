@@ -1,9 +1,24 @@
 package me.ngyu.domain;
 
 import java.math.BigDecimal;
+import me.ngyu.exception.MoneyValidateException;
 
 public record Money(BigDecimal amount,
                     String currency) {
+
+  public Money {
+    if (amount == null) {
+      throw new MoneyValidateException("amount는 null일 수 없습니다.");
+    }
+
+    if (currency == null || currency.isBlank()) {
+      throw new MoneyValidateException("currency는 비어 있을 수 없습니다.");
+    }
+
+    if (amount.compareTo(BigDecimal.ZERO) < 0) {
+      throw new MoneyValidateException("amount는 음수일 수 없습니다.");
+    }
+  }
 
   public static Money of(long amount) {
     return Money.of(amount, "KRW");
