@@ -20,10 +20,6 @@ public record Money(BigDecimal amount,
     return Money.of(amount, "KRW");
   }
 
-  public static Money of(Long amount) {
-    return Money.of(amount, "KRW");
-  }
-
   public static Money of(long amount, String currency) {
     return Money.of(BigDecimal.valueOf(amount), currency);
   }
