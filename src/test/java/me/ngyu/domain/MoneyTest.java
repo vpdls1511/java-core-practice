@@ -3,7 +3,6 @@ package me.ngyu.domain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import me.ngyu.exception.MoneyValidateException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -58,12 +57,12 @@ class MoneyTest {
   @Test
   @DisplayName("Money 객체를 생성할 수 있다.")
   void createMoneyObject() {
-    Money money = Money.of(10, "KRW");
+    Money money = Money.of(10, Currency.KRW);
 
     assertAll(
-            () -> assertEquals("10 KRW", money.get()),
+            () -> assertEquals("10 KRW", money.toString()),
             () -> assertEquals(BigDecimal.valueOf(10), money.amount()),
-            () -> assertEquals("KRW", money.currency())
+            () -> assertEquals(Currency.KRW, money.currency())
             );
   }
 

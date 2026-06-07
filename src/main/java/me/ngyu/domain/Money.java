@@ -4,34 +4,37 @@ import java.math.BigDecimal;
 import me.ngyu.exception.MoneyValidateException;
 
 public record Money(BigDecimal amount,
-                    String currency) {
+                    Currency currency) {
 
   public Money {
     if (amount == null) {
       throw new MoneyValidateException("amount는 null일 수 없습니다.");
     }
 
-    if (currency == null || currency.isBlank()) {
+    if (currency == null) {
       throw new MoneyValidateException("currency는 비어 있을 수 없습니다.");
     }
   }
 
   public static Money of(long amount) {
-    return Money.of(amount, "KRW");
+    return Money.of(amount, Currency.KRW);
   }
 
-  public static Money of(long amount, String currency) {
+  public static Money of(long amount, Currency currency) {
     return Money.of(BigDecimal.valueOf(amount), currency);
   }
 
   public static Money of(BigDecimal amount) {
-    return Money.of(amount, "KRW");
+    return Money.of(amount, Currency.KRW);
   }
 
-  public static Money of(BigDecimal amount, String currency) {
+  public static Money of(BigDecimal amount, Currency currency) {
     return new Money(amount, currency);
   }
 
+  /**
+   * 연산용
+   */
   public Money add(Money other) {
     validOperation(other);
     return Money.of(amount.add(other.amount), this.currency);
@@ -52,7 +55,12 @@ public record Money(BigDecimal amount,
     return Money.of(amount.divide(other.amount), this.currency);
   }
 
-  public String get() {
+  /**
+   * 변환 및 검증용
+   */
+
+  @Override
+  public String toString() {
     return amount.toString() + " " + currency;
   }
 
