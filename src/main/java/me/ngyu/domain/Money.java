@@ -28,18 +28,6 @@ public record Money(BigDecimal amount,
     return Money.of(BigDecimal.valueOf(amount), currency);
   }
 
-  public static Money of(double amount) {
-    return Money.of(amount, "KRW");
-  }
-
-  public static Money of(Double amount) {
-    return Money.of(amount, "KRW");
-  }
-
-  public static Money of(double amount, String currency) {
-    return new Money(BigDecimal.valueOf(amount), currency);
-  }
-
   public static Money of(BigDecimal amount) {
     return Money.of(amount, "KRW");
   }
