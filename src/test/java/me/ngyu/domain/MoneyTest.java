@@ -54,4 +54,15 @@ class MoneyTest {
     assertEquals(0, result.compareTo(BigDecimal.valueOf(0.3)));
   }
 
+  @Test
+  @DisplayName("Money 객체를 생성할 수 있다.")
+  void createMoneyObject() {
+    Money money = Money.of(10, "KRW");
+
+    assertAll(
+            () -> assertEquals("10 KRW", money.get()),
+            () -> assertEquals(BigDecimal.valueOf(10), money.amount()),
+            () -> assertEquals("KRW", money.currency())
+            );
+  }
 }
