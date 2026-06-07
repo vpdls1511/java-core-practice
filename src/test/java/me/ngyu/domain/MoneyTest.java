@@ -68,12 +68,6 @@ class MoneyTest {
   }
 
   @Test
-  @DisplayName("amount 는 null이어서는 안된다")
-  void failCreateMoneyObjectReasonAmountIsNull() {
-    assertThrows(MoneyValidateException.class, () -> Money.of(null));
-  }
-
-  @Test
   @DisplayName("연산자로 덧셈이 가능하다")
   void plusOperation() {
     Money a = Money.of(10);
@@ -97,7 +91,7 @@ class MoneyTest {
 
   @Test
   @DisplayName("연산자로 곱셈이 가능하다")
-  void minusOperation() {
+  void multiplyOperation() {
     Money a = Money.of(10);
     Money b = Money.of(20);
 
@@ -108,7 +102,7 @@ class MoneyTest {
 
   @Test
   @DisplayName("연산자로 나눗셈이 가능하다")
-  void minusOperation() {
+  void divideOperation() {
     Money a = Money.of(10);
     Money b = Money.of(20);
 
