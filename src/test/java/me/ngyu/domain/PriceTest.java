@@ -41,21 +41,22 @@ public class PriceTest {
 
   @Test
   @DisplayName("가격의 할인을 정할 수 있다. - 소수점")
-  void priceIsNotNegativeMethod() {
+  void priceSetDiscountPercent() {
     Price price = Price.of(Money.of(1000));
-    double discountPercent = 0.1;
 
-    price.discount(discountPercent);
+    Price discountPrice = price.discount(BigDecimal.valueOf(0.1));
 
-    assertTrue(price.is(900));
+    assertTrue(discountPrice.is(Money.of(900)));
   }
 
   @Test
   @DisplayName("가격의 할인을 정할 수 있다. - 금액")
-  void priceIsNotNegativeMethod() {
+  void priceSetDiscountPrice() {
     Price price = Price.of(Money.of(1000));
 
-    assertTrue(price.is(900));
+    Price discountPrice = price.discount(Money.of(100));
+
+    assertTrue(discountPrice.is(Money.of(900)));
   }
 
 }
