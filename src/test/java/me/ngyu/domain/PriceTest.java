@@ -1,5 +1,6 @@
 package me.ngyu.domain;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -29,5 +30,14 @@ public class PriceTest {
 
     assertTrue(price.money().amount().compareTo(BigDecimal.ZERO) > 0);
   }
+
+  @Test
+  @DisplayName("Price는 음수여서는 안된다 - isNegative 메서드 검증")
+  void priceIsNotNegativeMethod() {
+    Price price = Price.of(Money.of(1000));
+
+    assertFalse(price.isNegative());
+  }
+
 
 }
